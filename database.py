@@ -184,3 +184,12 @@ class database:
         count = cursor.fetchone()[0]
         conn.close()
         return count > 0
+
+    def update_workload(file_path, workload_id, teacher_id, subject_id, group_number):
+        conn = sq.connect(file_path)
+        cursor = conn.cursor()
+        cursor.execute("""
+            UPDATE workload SET teacher_id=?, subject_id=?, group_number=? WHERE id=?
+        """, (teacher_id, subject_id, group_number, workload_id))
+        conn.commit()
+        conn.close()
