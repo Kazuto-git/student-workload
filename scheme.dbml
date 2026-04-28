@@ -1,0 +1,22 @@
+Table teachers {
+  id integer [pk, increment]
+  surname text [not null]
+  name text [not null]
+  patronymic text
+  degree text
+  position text
+  experience integer
+}
+
+Table subjects {
+  id integer [pk, increment]
+  title text [not null]
+  hours integer [not null]
+}
+
+Table workload {
+  id integer [pk, increment]
+  teacher_id integer [ref: > teachers.id]
+  subject_id integer [ref: > subjects.id]
+  group_number text
+}
